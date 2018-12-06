@@ -13,7 +13,7 @@ def calculateCurrentFrequency(frequencyList: List[int], currentFrequency: int) -
     frequencyList -- Frequency list which will be looped through.
     '''
     for value in frequencyList:
-        currentFrequency = currentFrequency + int(value)
+        currentFrequency += int(value)
 
     return currentFrequency
 
@@ -30,7 +30,7 @@ def calculateFrequencySeenTwice(frequencyList: List[int]) -> int:
     frequencySeenTwice = None
     while frequencySeenTwice == None:
         for frequency in frequencyList:
-            currentFreq = currentFreq + int(frequency)
+            currentFreq += int(frequency)
             if currentFreq in seenFrequencys:
                 frequencySeenTwice = currentFreq
                 break
