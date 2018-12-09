@@ -74,14 +74,19 @@ def getClaimsWithoutOverlap(fabric: List[List[List[int]]]) -> List[int]:
 
     return claimsWithoutOverlap
 
-lines = readFile("input.txt").splitlines()
+# Create fabric.
 fabric = [[[] for _ in range(1000)] for _ in range(1000)]
 
+# Handle claims.
+lines = readFile("input.txt").splitlines()
 for line in lines:
     claim = parseClaim(line)
     fabric = reserveAreaForClaim(fabric, claim)
 
+# First part:
 area = calculateAmountOfOverlappingClaims(fabric)
 print(area)
+
+# Second part:
 claimsWithoutOverlap = getClaimsWithoutOverlap(fabric)
 print(claimsWithoutOverlap)
