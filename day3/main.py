@@ -49,6 +49,31 @@ def calculateAmountOfOverlappingClaims(fabric: List[List[List[int]]]) -> int:
     return area
 
 
+def getClaimsWithoutOverlap(fabric: List[List[List[int]]]) -> List[int]:
+    '''
+    Returns claim id's without overlap with another claim.
+
+    Arguments:
+    fabric -- Fabric which contains all claims.
+    '''
+    claimsWithoutOverlap = []
+    claimsWithOverlap = []
+    # Slow solution since time complexity is n².
+    for row in range(len(fabric)):
+        for col in range(len(fabric[row])):
+            cell = fabric[row][col]
+            if(len(cell) == 1 and cell[0] not in claimsWithOverlap and cell[0] not in claimsWithoutOverlap):
+                claimsWithoutOverlap.append(cell[0])
+            elif(len(cell) >= 2):
+                for claimId in cell:
+                    if claimId in claimsWithoutOverlap:
+                        claimsWithoutOverlap.remove(claimId)
+                    if claimId not in claimsWithOverlap:
+                        claimsWithOverlap.append(claimId)
+            print(f"{row}:{col}") # For 'logging' purposes since function takes while to run.
+
+    return claimsWithoutOverlap
+
 lines = readFile("input.txt").splitlines()
 fabric = [[[] for _ in range(1000)] for _ in range(1000)]
 
@@ -58,3 +83,5 @@ for line in lines:
 
 area = calculateAmountOfOverlappingClaims(fabric)
 print(area)
+claimsWithoutOverlap = getClaimsWithoutOverlap(fabric)
+print(claimsWithoutOverlap)
