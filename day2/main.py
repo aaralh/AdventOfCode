@@ -13,7 +13,7 @@ def getCharOccurTimes(string: str) -> dict:
     string -- String to loop through.
     '''
     chars = {}
-    for char in boxId:
+    for char in string:
         value = chars.get(char)
         if value != None:
             chars[char] += 1
